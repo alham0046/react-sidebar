@@ -1,0 +1,59 @@
+/* Wrapping in a layer makes these styles "weak" so utilities win */
+@layer base {
+  .rs-sidebarItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+  }
+
+  .rs-sidebarItem:hover {
+    background-color: #374151;
+  }
+
+  .rs-sidebarRootOuter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    height: 100vh;
+  }
+
+  .rs-sidebarRootMiddle {
+    height: 100vh;
+    color: #ffffff;
+    background-color: #111827;
+    overflow: hidden;
+    will-change: width;
+  }
+
+  .rs-sidebarRootInner {
+    display: flex;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .rs-mainContent {
+    overflow-y: auto;
+    min-height: 100vh;
+  }
+
+  .sidebarIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .rs-sidebarText {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .rs-sidebarToggle {
+    cursor: pointer;
+  }
+}

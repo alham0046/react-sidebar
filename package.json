@@ -1,0 +1,36 @@
+{
+  "name": "react-sidebar",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Alham",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "release": "node scripts/release.js",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18.3.1",
+    "react-dom": ">=18.0.0",
+    "motion": "^12.38.0"
+  },
+  "devDependencies": {
+    "@types/node": ">=22.14.1",
+    "@types/react": ">=19.1.2",
+    "@types/react-dom": ">=19.2.3",
+    "tsup": ">=8.4.0",
+    "typescript": ">=5.8.3"
+  },
+  "keywords": [
+    "sidebar",
+    "react",
+    "component-library"
+  ]
+}
