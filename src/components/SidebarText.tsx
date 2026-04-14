@@ -1,27 +1,36 @@
-import React, { memo } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import React, { memo, useCallback, type MouseEvent } from "react";
+import { motion } from "motion/react";
 import { useSidebar } from "../context/SidebarContext";
 import { useSidebarLayout } from "../context/SidebarLayoutContext";
+import { useItemContext } from "../context/SidebarItemContext";
 
 export interface SidebarTextProps {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
+  onClick?: (item : string, e : MouseEvent<HTMLDivElement>) => void
 }
 
 const SidebarText: React.FC<SidebarTextProps> = ({
   children,
   className = "",
   style = {},
+  onClick
 }) => {
   const { collapsed } = useSidebar();
   const { collapseMode } = useSidebarLayout();
+  const { itemGroup } = useItemContext();
 
   const showText =
     collapseMode === "hidden"
       ? true
       : !collapsed;
 
+  const handleClick = useCallback((e : MouseEvent<HTMLDivElement>) => {
+    if (onClick) {
+      onClick(itemGroup, e)
+    }
+  }, [onClick, itemGroup])
   return (
     <motion.div
       initial={false}
@@ -39,6 +48,7 @@ const SidebarText: React.FC<SidebarTextProps> = ({
         whiteSpace: "nowrap",
         ...style
       }}
+      onClick={handleClick}
     >
       {children}
     </motion.div>
@@ -46,6 +56,61 @@ const SidebarText: React.FC<SidebarTextProps> = ({
 };
 
 export default memo(SidebarText);
+
+
+
+
+
+
+
+// import React, { memo } from "react";
+// import { motion, AnimatePresence } from "motion/react";
+// import { useSidebar } from "../context/SidebarContext";
+// import { useSidebarLayout } from "../context/SidebarLayoutContext";
+
+// export interface SidebarTextProps {
+//   children: React.ReactNode;
+//   className?: string;
+//   style?: React.CSSProperties;
+// }
+
+// const SidebarText: React.FC<SidebarTextProps> = ({
+//   children,
+//   className = "",
+//   style = {},
+// }) => {
+//   const { collapsed } = useSidebar();
+//   const { collapseMode } = useSidebarLayout();
+
+//   const showText =
+//     collapseMode === "hidden"
+//       ? true
+//       : !collapsed;
+
+//   return (
+//     <motion.div
+//       initial={false}
+//       animate={{
+//         opacity: showText ? 1 : 0,
+//         x: showText ? 0 : -8,
+//         width: showText ? "auto" : 0,
+//       }}
+//       transition={{
+//         duration: 0.2
+//       }}
+//       className={`rs-sidebarText ${className}`}
+//       style={{
+//         overflow: "hidden",
+//         whiteSpace: "nowrap",
+//         ...style
+//       }}
+//     >
+//       {children}
+//     </motion.div>
+//   );
+// };
+
+// export default memo(SidebarText);
 
 
 

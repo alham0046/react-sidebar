@@ -1,22 +1,26 @@
 import * as React from 'react';
-import React__default from 'react';
+import React__default, { MouseEvent } from 'react';
 
 interface SidebarTextProps {
     children: React__default.ReactNode;
     className?: string;
     style?: React__default.CSSProperties;
+    onClick?: (item: string, e: MouseEvent<HTMLDivElement>) => void;
 }
 
 interface SidebarIconProps {
     children: React__default.ReactNode;
     imageViewport?: string;
+    onClick?: (item: string, e: MouseEvent<HTMLDivElement>) => void;
 }
 
 interface SidebarItemProps {
     children: React__default.ReactNode;
-    onClick?: () => void;
+    onClick?: (item: string, e: MouseEvent<HTMLDivElement>) => void;
     className?: string;
+    itemGroup?: string;
     style?: React__default.CSSProperties;
+    imageViewport?: string;
 }
 
 interface SidebarToggleProps {

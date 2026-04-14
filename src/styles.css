@@ -1,5 +1,5 @@
 /* Wrapping in a layer makes these styles "weak" so utilities win */
-@layer base {
+/* @layer base {
   .rs-sidebarItem {
     display: flex;
     align-items: center;
@@ -55,5 +55,86 @@
 
   .rs-sidebarToggle {
     cursor: pointer;
+  }
+} */
+
+@layer base {
+  .rs-sidebarItem {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0rem;
+    /* gap: 0.75rem; */
+    cursor: pointer;
+  }
+
+  .rs-sidebarItem:hover {
+    background-color: #374151;
+  }
+
+  .rs-sidebarRootOuter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    height: 100vh;
+  }
+
+  .rs-sidebarRootMiddle {
+    height: 100vh;
+    color: #ffffff;
+    background-color: #111827;
+    overflow: hidden;
+    will-change: width;
+  }
+
+  .rs-sidebarRootInner {
+    display: flex;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .rs-mainContent {
+    overflow-y: auto;
+    /* min-height: 100vh; */
+  }
+
+  .rs-sidebarIcon {
+    display: flex;
+    justify-content: center;
+    /* border : 2px solid red; */
+    align-items: center;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .rs-sidebarIcon>* {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: contain;
+  }
+
+  .rs-sidebarIcon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .rs-sidebarText {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .rs-sidebarToggle {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .rs-sidebarToggle svg {
+    display: block;
   }
 }
