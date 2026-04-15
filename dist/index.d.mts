@@ -14,13 +14,32 @@ interface SidebarIconProps {
     onClick?: (item: string, e: MouseEvent<HTMLDivElement>) => void;
 }
 
+interface SideBarProps {
+    children: React__default.ReactNode;
+    defaultCollapsed?: boolean;
+    expandedWidth?: number;
+    sidebarId?: string;
+}
+type Shortcut = {
+    key: string;
+    alt?: boolean;
+    ctrl?: boolean;
+    shift?: boolean;
+    meta?: boolean;
+    action?: () => void;
+};
+
 interface SidebarItemProps {
     children: React__default.ReactNode;
-    onClick?: (item: string, e: MouseEvent<HTMLDivElement>) => void;
+    onClick?: (item: string, e?: MouseEvent<HTMLDivElement>) => void;
     className?: string;
     itemGroup?: string;
     style?: React__default.CSSProperties;
+    uniqueId?: string;
     imageViewport?: string;
+    shortcut?: Shortcut;
+    TwActiveStyles?: string;
+    activeStyle?: React__default.CSSProperties;
 }
 
 interface SidebarToggleProps {
@@ -28,11 +47,17 @@ interface SidebarToggleProps {
     className?: string;
 }
 
-interface SideBarProps {
-    children: React__default.ReactNode;
-    defaultCollapsed?: boolean;
-    expandedWidth?: number;
+interface HamburgerProps {
+    size?: number;
+    color?: string;
+    onClick?: () => void;
 }
+declare const _default$2: React__default.NamedExoticComponent<HamburgerProps>;
+
+declare const highlightItem: (sidebarId: string, itemId: string) => void;
+declare const sidebarAction: (sidebarId: string) => {
+    highlightItem: (itemId: string) => void;
+};
 
 interface MainContentProps {
     children: React__default.ReactNode;
@@ -55,4 +80,4 @@ declare const Sidebar: React.NamedExoticComponent<SideBarProps> & {
     Text: React.NamedExoticComponent<SidebarTextProps>;
 };
 
-export { _default$1 as MainContent, Sidebar, _default as SidebarLayout };
+export { _default$1 as MainContent, Sidebar, _default as SidebarLayout, _default$2 as ThreeLineSideBar, highlightItem, sidebarAction };

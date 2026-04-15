@@ -1,8 +1,8 @@
 import React, { memo, useCallback, type MouseEvent } from "react";
 import { motion } from "motion/react";
-import { useSidebar } from "../context/SidebarContext";
 import { useSidebarLayout } from "../context/SidebarLayoutContext";
 import { useItemContext } from "../context/SidebarItemContext";
+import { useSidebarCollapsed } from "@/hooks/useSidebar";
 
 export interface SidebarTextProps {
   children: React.ReactNode;
@@ -17,7 +17,7 @@ const SidebarText: React.FC<SidebarTextProps> = ({
   style = {},
   onClick
 }) => {
-  const { collapsed } = useSidebar();
+  const collapsed = useSidebarCollapsed();
   const { collapseMode } = useSidebarLayout();
   const { itemGroup } = useItemContext();
 

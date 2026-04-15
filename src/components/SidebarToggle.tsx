@@ -23,8 +23,8 @@
 
 
 import React, { memo } from "react";
-import { useSidebar } from "../context/SidebarContext";
 import { useSidebarLayout } from "../context/SidebarLayoutContext";
+import { useSidebarActions } from "@/hooks/useSidebar";
 
 export interface SidebarToggleProps {
   children: React.ReactNode;
@@ -32,7 +32,7 @@ export interface SidebarToggleProps {
 }
 
 const SidebarToggle: React.FC<SidebarToggleProps> = ({ children, className = "" }) => {
-  const { toggle } = useSidebar();
+  const { toggle } = useSidebarActions();
   const { collapsedWidth, collapseMode } = useSidebarLayout();
 
   return (

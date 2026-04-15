@@ -12,6 +12,10 @@ export const Sidebar = Object.assign(SidebarRoot, {
   Text: SidebarText,
 });
 
+export {default as ThreeLineSideBar} from "./svg/ThreeLineSideBar"
+
+export {highlightItem, sidebarAction} from "./utils/storeUtils"
+
 export {default as MainContent} from "./components/MainContent"
 
 export {default as SidebarLayout} from "./components/SidebarLayout"
