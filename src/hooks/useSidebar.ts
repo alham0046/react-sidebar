@@ -1,8 +1,8 @@
 // useSidebar.ts
 import { useMemo, useSyncExternalStore } from "react";
-import { useSidebarStore } from "../context/SidebarContext";
 import type { Shortcut } from "../components/SideBar";
 import type { StyleEntry } from "../store/store";
+import { useSidebarStore } from "./useSidebarStore";
 
 export const useSidebarCollapsed = () => {
   const store = useSidebarStore();

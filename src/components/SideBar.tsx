@@ -5,7 +5,8 @@ import { getKeyCombo } from '../utils/generateKey'
 import { getOrCreateStore } from '../store/storeRegistry'
 import { randomString } from '../utils/stringManiputation'
 import { SidebarStore } from '../store/store'
-import SidebarStoreContext from '../context/SidebarContext'
+import { SidebarStoreContext } from '@/context/SharedContext'
+// import SidebarStoreContext from '../context/SidebarContext'
 
 export interface SideBarProps {
   children: React.ReactNode
