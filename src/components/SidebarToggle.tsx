@@ -24,7 +24,7 @@
 
 import React, { memo } from "react";
 import { useSidebarLayout } from "../context/SidebarLayoutContext";
-import { useSidebarActions } from "@/hooks/useSidebar";
+import { useSidebarActions } from "../hooks/useSidebar";
 
 export interface SidebarToggleProps {
   children: React.ReactNode;

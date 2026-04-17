@@ -3,7 +3,7 @@ import SidebarItemContext from "../context/SidebarItemContext";
 import type { Shortcut } from "./SideBar";
 import { useSidebarActions } from "../hooks/useSidebar";
 import { randomString } from "../utils/stringManiputation";
-import { OnClick } from "@/types/actions";
+import { OnClick } from "../types/actions";
 
 export interface SidebarItemProps {
   children: React.ReactNode;

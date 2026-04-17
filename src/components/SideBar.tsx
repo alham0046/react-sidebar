@@ -1,10 +1,10 @@
 import React, { memo, useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { useSidebarLayout } from '../context/SidebarLayoutContext'
 import { motion } from 'motion/react'
-import { getKeyCombo } from '@/utils/generateKey'
-import { getOrCreateStore } from '@/store/storeRegistry'
-import { randomString } from '@/utils/stringManiputation'
-import { SidebarStore } from '@/store/store'
+import { getKeyCombo } from '../utils/generateKey'
+import { getOrCreateStore } from '../store/storeRegistry'
+import { randomString } from '../utils/stringManiputation'
+import { SidebarStore } from '../store/store'
 import SidebarStoreContext from '../context/SidebarContext'
 
 export interface SideBarProps {

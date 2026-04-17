@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { useSidebarLayout } from "../context/SidebarLayoutContext";
 import { useItemContext } from "../context/SidebarItemContext";
 import { useSidebarCollapsed } from "@/hooks/useSidebar";
-import { OnClick } from "@/types/actions";
+import { OnClick } from "../types/actions";
 
 export interface SidebarTextProps {
   children: React.ReactNode;

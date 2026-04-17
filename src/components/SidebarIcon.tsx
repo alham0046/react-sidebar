@@ -23,8 +23,8 @@
 
 import React, { memo, useCallback, type MouseEvent } from "react";
 import { useSidebarLayout } from "../context/SidebarLayoutContext";
-import { useItemContext } from "@/context/SidebarItemContext";
-import { OnClick } from "@/types/actions";
+import { useItemContext } from "../context/SidebarItemContext";
+import { OnClick } from "../types/actions";
 
 export interface SidebarIconProps {
   children: React.ReactNode;
