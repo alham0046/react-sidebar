@@ -3,12 +3,13 @@ import { motion } from "motion/react";
 import { useSidebarLayout } from "../context/SidebarLayoutContext";
 import { useItemContext } from "../context/SidebarItemContext";
 import { useSidebarCollapsed } from "@/hooks/useSidebar";
+import { OnClick } from "@/types/actions";
 
 export interface SidebarTextProps {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
-  onClick?: (item : string, e : MouseEvent<HTMLDivElement>) => void
+  onClick?: OnClick
 }
 
 const SidebarText: React.FC<SidebarTextProps> = ({
@@ -19,7 +20,7 @@ const SidebarText: React.FC<SidebarTextProps> = ({
 }) => {
   const collapsed = useSidebarCollapsed();
   const { collapseMode } = useSidebarLayout();
-  const { itemGroup } = useItemContext();
+  const { routeName, routePath } = useItemContext();
 
   const showText =
     collapseMode === "hidden"
@@ -28,9 +29,9 @@ const SidebarText: React.FC<SidebarTextProps> = ({
 
   const handleClick = useCallback((e : MouseEvent<HTMLDivElement>) => {
     if (onClick) {
-      onClick(itemGroup, e)
+      onClick({routeName, routePath, e})
     }
-  }, [onClick, itemGroup])
+  }, [onClick, routeName, routePath])
   return (
     <motion.div
       initial={false}

@@ -19,3 +19,5 @@ export {highlightItem, sidebarAction} from "./utils/storeUtils"
 export {default as MainContent} from "./components/MainContent"
 
 export {default as SidebarLayout} from "./components/SidebarLayout"
+
+export type {OnClick, OnClickArgs} from './types/actions'

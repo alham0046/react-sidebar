@@ -10,6 +10,10 @@
   "files": [
     "dist"
   ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./router": "./dist/router.js"
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
@@ -17,14 +21,15 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
+    "motion": ">=12.38.0",
     "react": ">=18.3.1",
-    "react-dom": ">=18.0.0",
-    "motion": "^12.38.0"
+    "react-dom": ">=18.0.0"
   },
   "devDependencies": {
     "@types/node": ">=22.14.1",
     "@types/react": ">=19.1.2",
     "@types/react-dom": ">=19.2.3",
+    "react-router-dom": ">=7.14.1",
     "tsup": ">=8.4.0",
     "typescript": ">=5.8.3"
   },

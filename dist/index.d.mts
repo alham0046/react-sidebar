@@ -1,24 +1,33 @@
 import * as React from 'react';
 import React__default, { MouseEvent } from 'react';
 
+interface OnClickArgs {
+    routePath: string;
+    routeName: string;
+    e: MouseEvent<HTMLDivElement>;
+}
+type OnClick = (args: OnClickArgs) => void;
+
 interface SidebarTextProps {
     children: React__default.ReactNode;
     className?: string;
     style?: React__default.CSSProperties;
-    onClick?: (item: string, e: MouseEvent<HTMLDivElement>) => void;
+    onClick?: OnClick;
 }
 
 interface SidebarIconProps {
     children: React__default.ReactNode;
     imageViewport?: string;
-    onClick?: (item: string, e: MouseEvent<HTMLDivElement>) => void;
+    onClick?: OnClick;
 }
 
 interface SideBarProps {
     children: React__default.ReactNode;
     defaultCollapsed?: boolean;
-    expandedWidth?: number;
+    routing?: boolean;
     sidebarId?: string;
+    expandedWidth?: number;
+    onSelect?: (item: string) => void;
 }
 type Shortcut = {
     key: string;
@@ -31,10 +40,11 @@ type Shortcut = {
 
 interface SidebarItemProps {
     children: React__default.ReactNode;
-    onClick?: (item: string, e?: MouseEvent<HTMLDivElement>) => void;
+    onClick?: OnClick;
     className?: string;
     itemGroup?: string;
     style?: React__default.CSSProperties;
+    route?: string;
     uniqueId?: string;
     imageViewport?: string;
     shortcut?: Shortcut;
@@ -80,4 +90,4 @@ declare const Sidebar: React.NamedExoticComponent<SideBarProps> & {
     Text: React.NamedExoticComponent<SidebarTextProps>;
 };
 
-export { _default$1 as MainContent, Sidebar, _default as SidebarLayout, _default$2 as ThreeLineSideBar, highlightItem, sidebarAction };
+export { _default$1 as MainContent, type OnClick, type OnClickArgs, Sidebar, _default as SidebarLayout, _default$2 as ThreeLineSideBar, highlightItem, sidebarAction };

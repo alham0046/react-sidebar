@@ -2,7 +2,8 @@ import { createContext, useContext } from "react";
 
 interface SidebarItemContextType {
     sharedImageViewport: string;
-    itemGroup: string
+    routeName : string;
+    routePath : string;
 }
 
 const SidebarItemContext = createContext<SidebarItemContextType | null>(null);

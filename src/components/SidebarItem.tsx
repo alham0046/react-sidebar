@@ -1,15 +1,18 @@
-import React, { memo, useCallback, useEffect, useRef, type MouseEvent } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, type MouseEvent } from "react";
 import SidebarItemContext from "../context/SidebarItemContext";
 import type { Shortcut } from "./SideBar";
 import { useSidebarActions } from "../hooks/useSidebar";
 import { randomString } from "../utils/stringManiputation";
+import { OnClick } from "@/types/actions";
 
 export interface SidebarItemProps {
   children: React.ReactNode;
-  onClick?: (item: string, e?: MouseEvent<HTMLDivElement>) => void
+  // onClick?: (item: string, e?: MouseEvent<HTMLDivElement>) => void
+  onClick?: OnClick
   className?: string;
   itemGroup?: string
   style?: React.CSSProperties
+  route?: string
   uniqueId?: string
   imageViewport?: string
   shortcut?: Shortcut
@@ -25,13 +28,14 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   className = "",
   itemGroup = "",
   uniqueId,
+  route = "",
   imageViewport = "24 24",
   TwActiveStyles = "",
   activeStyle = EMPTY_STYLE,
   style = {},
   shortcut
 }) => {
-  const { registerKey, setActiveStyle, registerElement, registerStyle } = useSidebarActions()
+  const { registerKey, registerElement, registerStyle, onItemClick, registerRoute } = useSidebarActions()
 
   // const id = uniqueId || randomString(); /////👉 This runs on EVERY render → new id → breaks everything
   const idRef = useRef(uniqueId || randomString());
@@ -40,11 +44,15 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   const ref = useRef<HTMLDivElement>(null);
 
   const handleClick = useCallback((e: MouseEvent<HTMLDivElement>) => {
-    setActiveStyle(id)
-    onClick?.(itemGroup, e)
-  }, [itemGroup, setActiveStyle, onClick, id]);
+    // setActiveStyle(id)
+    onItemClick(id)
+    onClick?.({ routePath: route, routeName: itemGroup, e })
+  }, [itemGroup, onItemClick, onClick, id, route]);
 
   useEffect(() => {
+    if (route) {
+      registerRoute(id, route);
+    }
     if (!ref.current) return;
     return registerElement(id, ref.current);
   }, [id]);
@@ -73,9 +81,11 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
     return unregister;
   }, [shortcut, registerKey, actions]);
 
+  const itemContext = useMemo(() => ({ sharedImageViewport: imageViewport, routePath : route, routeName : itemGroup }), [itemGroup, imageViewport]);
+
   // const { collapsed } = useSidebar()
   return (
-    <SidebarItemContext.Provider value={{ sharedImageViewport: imageViewport, itemGroup }}>
+    <SidebarItemContext.Provider value={itemContext}>
       <div
         ref={ref}
         onClick={handleClick}

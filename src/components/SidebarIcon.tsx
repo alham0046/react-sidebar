@@ -24,23 +24,24 @@
 import React, { memo, useCallback, type MouseEvent } from "react";
 import { useSidebarLayout } from "../context/SidebarLayoutContext";
 import { useItemContext } from "@/context/SidebarItemContext";
+import { OnClick } from "@/types/actions";
 
 export interface SidebarIconProps {
   children: React.ReactNode;
   imageViewport?: string;
-  onClick?: (item : string, e : MouseEvent<HTMLDivElement>) => void
+  onClick?: OnClick
 }
 
 const SidebarIcon: React.FC<SidebarIconProps> = ({ children, imageViewport, onClick }) => {
-  const { sharedImageViewport, itemGroup } = useItemContext()
+  const { sharedImageViewport, routeName, routePath } = useItemContext()
   const { collapsedWidth } = useSidebarLayout()
   const [width, height] = (imageViewport || sharedImageViewport).split(" ");
 
   const handleClick = useCallback((e : MouseEvent<HTMLDivElement>) => {
     if (onClick) {
-      onClick(itemGroup, e)
+      onClick({routeName, routePath, e})
     }
-  }, [onClick, itemGroup])
+  }, [onClick, routeName, routePath])
 
   return (
     <div

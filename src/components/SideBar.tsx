@@ -10,8 +10,10 @@ import SidebarStoreContext from '../context/SidebarContext'
 export interface SideBarProps {
   children: React.ReactNode
   defaultCollapsed?: boolean
-  expandedWidth?: number
+  routing?: boolean
   sidebarId?: string
+  expandedWidth?: number
+  onSelect?: (item: string) => void
 }
 
 export type Shortcut = {
@@ -23,15 +25,15 @@ export type Shortcut = {
   action?: () => void;
 };
 
-const SidebarRoot: React.FC<SideBarProps> = ({ children, sidebarId, defaultCollapsed = true, expandedWidth = 250 }) => {
+const SidebarRoot: React.FC<SideBarProps> = ({ children, sidebarId,onSelect, routing = false, defaultCollapsed = true, expandedWidth = 250 }) => {
   const storeRef = useRef<SidebarStore>(null);
 
-  const storeId = `main_${sidebarId || randomString()}`
 
   if (!storeRef.current) {
-    // storeRef.current = new SidebarStore(defaultCollapsed);
+    const storeId = `main_${sidebarId || randomString()}`
     storeRef.current = getOrCreateStore(storeId, defaultCollapsed)
-    // shortcutsRef.current = storeRef.current.getShortcuts()
+    storeRef.current?.setRouting(routing)
+    storeRef.current!.setOnSelect(onSelect);
   }
 
   const subscribeCollapsed = useCallback(
